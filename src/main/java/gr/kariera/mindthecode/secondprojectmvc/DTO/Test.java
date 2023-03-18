@@ -1,2 +1,4 @@
-package gr.kariera.mindthecode.secondprojectmvc.DTO;public class Test {
+package gr.kariera.mindthecode.secondprojectmvc.DTO;
+
+public class Test {
 }
