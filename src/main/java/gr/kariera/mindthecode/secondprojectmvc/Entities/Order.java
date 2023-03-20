@@ -23,7 +23,7 @@ public class Order {
     private Double discountPercentage = 0d;
     private String address;
     private BigDecimal totalCost;
-    private Collection<ProductWithQuantityDto> products;
+
 
     public Order() {
         this.orderProducts = new ArrayList<>();
@@ -46,10 +46,10 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
-
+    private Collection<OrderProduct> orderProducts = new ArrayList<>();
 
     @Transient
-    private Collection<OrderProduct> orderProducts = new ArrayList<>();
+    private Collection<ProductWithQuantityDto> products;
     public Collection<ProductWithQuantityDto>  getProducts() {
         return orderProducts
                 .stream()
