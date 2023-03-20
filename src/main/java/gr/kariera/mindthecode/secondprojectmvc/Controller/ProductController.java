@@ -29,21 +29,21 @@ public class ProductController {
             @RequestParam(defaultValue = "ASC", required = false) String sort,
             Model model
     ) {
-        model.addAttribute("persons", service.getProducts(description, page, size, sort));
+        model.addAttribute("products", service.getProducts(description, page, size, sort));
         model.addAttribute("sort", sort);
         model.addAttribute("description", description);
-        return "products";
+        return "index";
     }
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
-        model.addAttribute("person",  new Product());
-        return "create-or-update-product";
+        model.addAttribute("product",  new Product());
+        return "index2";
     }
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("product",  service.getById(id));
-        return "create-or-update-product";
+        return "index2";
     }
 
     @PostMapping("/delete/{id}")
