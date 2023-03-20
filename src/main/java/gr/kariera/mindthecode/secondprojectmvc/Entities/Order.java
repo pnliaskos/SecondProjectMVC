@@ -1,6 +1,8 @@
 package gr.kariera.mindthecode.secondprojectmvc.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import gr.kariera.mindthecode.secondprojectmvc.DTOs.ProductWithQuantityDto;
+import gr.kariera.mindthecode.secondprojectmvc.DTOs.ProductWithQuantityExtendedDto;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.LazyCollection;
