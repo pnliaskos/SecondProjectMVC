@@ -1,6 +1,7 @@
 package gr.kariera.mindthecode.secondprojectmvc.MVC;
 
 import gr.kariera.mindthecode.secondprojectmvc.Entities.Product;
+import gr.kariera.mindthecode.secondprojectmvc.Repositories.ProductRepository;
 import gr.kariera.mindthecode.secondprojectmvc.Services.ProductService;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ import java.util.Optional;
                 Model model
         ) {
 
-            model.addAttribute("persons", service.getProducts(description, page, size, sort));
+            model.addAttribute("products", service.getProducts(description, page, size, sort));
             model.addAttribute("sort", sort);
             model.addAttribute("description", description);
             return "products";
@@ -38,7 +39,7 @@ import java.util.Optional;
         @GetMapping("/create")
         public String showCreateForm(Model model) {
 
-            model.addAttribute("person",  new Product());
+            model.addAttribute("product",  new Product());
             return "create-or-update-product";
 
         }
