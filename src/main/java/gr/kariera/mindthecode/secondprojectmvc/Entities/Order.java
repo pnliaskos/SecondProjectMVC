@@ -1,10 +1,10 @@
 package gr.kariera.mindthecode.secondprojectmvc.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import gr.kariera.mindthecode.secondprojectmvc.DTOs.ProductWithQuantityDto;
-import gr.kariera.mindthecode.secondprojectmvc.DTOs.ProductWithQuantityExtendedDto;
+
+import gr.kariera.mindthecode.secondprojectmvc.DTO.ProductWithQuantityDto;
+import gr.kariera.mindthecode.secondprojectmvc.DTO.ProductWithQuantityExtendedDto;
 import jakarta.persistence.*;
-import lombok.Data;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -13,17 +13,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-@Data
 @Entity(name = "orders")
 public class Order {
-
     @Id
     @GeneratedValue
     private Integer id;
-    private Double discountPercentage = 0d;
-    private String address;
-    private BigDecimal totalCost;
-    private Collection<ProductWithQuantityDto> products;
 
     public Order() {
         this.orderProducts = new ArrayList<>();
@@ -43,13 +37,39 @@ public class Order {
         this.address = address;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+
+    public Collection<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(Collection<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
-
+    private Collection<OrderProduct> orderProducts = new ArrayList<>();
 
     @Transient
-    private Collection<OrderProduct> orderProducts = new ArrayList<>();
+    private Collection<ProductWithQuantityDto> products;
+
     public Collection<ProductWithQuantityDto>  getProducts() {
         return orderProducts
                 .stream()
@@ -65,6 +85,8 @@ public class Order {
     }
 
     @Transient
+    private BigDecimal totalCost;
+
     public BigDecimal getTotalCost() {
         BigDecimal total = orderProducts
                 .stream()
@@ -82,4 +104,15 @@ public class Order {
         return total.multiply(BigDecimal.valueOf(1-discountPercentage));
     }
 
+    public Double getDiscountPercentage() {
+        return discountPercentage;
+    }
+
+    public void setDiscountPercentage(Double discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+
+    private Double discountPercentage = 0d;
+
+    private String address;
 }

@@ -1,4 +1,4 @@
-package gr.kariera.mindthecode.secondprojectmvc.DTOs;
+package gr.kariera.mindthecode.secondprojectmvc.DTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;

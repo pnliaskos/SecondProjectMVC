@@ -1,4 +1,4 @@
-package gr.kariera.mindthecode.secondprojectmvc.DTOs;
+package gr.kariera.mindthecode.secondprojectmvc.DTO;
 
 import java.math.BigDecimal;
 
@@ -22,5 +22,4 @@ public class ProductWithQuantityExtendedDto extends ProductWithQuantityDto {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }
